@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Primer ArrayList</title>
+    <style>
+        table,th,td {
+            border:1px solid black;
+            border-collapse: collapse}
+    </style>
+</head>
+<body>
+<nav th:replace="~{fragmentos/barrasup::barra-superior}"></nav>
+<table >
+    <thead>
+    <tr>
+        <th>Nombre Artista o Grupo</th>
+        <th>Nombre Canción</th>
+        <th>Fecha de estreno cancion</th>
+        <th>Actual</th>
+        <th>Tipo de Musica</th>
+        <th>Mas Informacion</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="cancion: ${listaCanciones}">
+        <td th:text="${cancion.getNombreCantante()}">ID</td>
+        <td th:text="${cancion.getNombreCancion()}"></td>
+        <td th:text="${cancion.getFechaPublicacion()}"></td>
+        <td>
+        <span th:if="${cancion.isActual()}" th:text="Si">Sí</span>
+        <span th:unless="${cancion.isActual()}" th:text="No">No</span>
+        </td>
+        <td th:text="${cancion.getEstiloCanciones()}"></td>
+        <td class="PruebaAjax" th:data-id="${cancion.getId()}"><button>Mas Información</button></td>
+        <!--<td><a th:href="@{/mascota/edit/{id}(id=${mascota.id})}">Editar</a></td>
+        <td>
+            <form method="post" th:action="@{/mascota/delete/{id}(id=${mascota.id})}">
+                <input type="hidden" name="id" th:value="${mascota.id}" />
+                <button type="submit">Eliminar</button>
+            </form>
+
+        </td>-->
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

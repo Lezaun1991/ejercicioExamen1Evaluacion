@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NuevaCancion</title>
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nuevo Cliente</title>
+
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+<nav th:replace="~{fragmentos/barrasup::barra-superior}"></nav>
+<h2>Nueva Cancion</h2>
+
+<form method="post" action="#"
+      th:action="@{/new/song/submit}"
+      th:object="${cancion}">
+
+    <div class="input-group mb-3" th:classappend="${#fields.hasErrors('id')} ? 'has-error'">
+        <label for="dni">ID</label>
+        <input class="form-control" type="text" id="dni" th:field="*{id}">
+        <span th:if="${#fields.hasErrors('id')}" th:errors="*{id}"
+              class="help-block" id="id-error">Errores</span>
+    </div>
+    <div class="input-group mb-3"  th:classappend="${#fields.hasErrors('nombreCantante')} ? 'has-error'">
+        <label for="nombre">Nombre Cantante o Grupo</label>
+        <input class="form-control" type="text" id="nombre" th:field="*{nombreCantante}">
+        <span th:if="${#fields.hasErrors('nombreCantante')}" th:errors="*{nombreCantante}"
+              class="help-block" id="nombre-error">Errores</span>
+    </div>
+    <div class="input-group mb-3"  th:classappend="${#fields.hasErrors('nombreCantante')} ? 'has-error'">
+        <label for="apellidos">Nombre Cancion</label>
+        <input class="form-control" type="text" id="apellidos" th:field="*{nombreCancion}">
+        <span th:if="${#fields.hasErrors('nombreCantante')}" th:errors="*{nombreCancion}"
+              class="help-block" id="apellidos-error">Errores</span>
+    </div>
+    <div class="mb-3">
+        <input class="form-check-input" type="checkbox" id="nueva" th:field="*{actual}">
+        <label class="form-check-label" for="nueva">Es Actual</label>
+    </div>
+    <div class="input-group mb-3"  th:classappend="${#fields.hasErrors('fechaPublicacion')} ? 'has-error'">
+        <label for="edad">Fecha de Publicacion</label>
+        <input class="form-control" type="date" id="edad" th:field="*{fechaPublicacion}">
+        <span th:if="${#fields.hasErrors('fechaPublicacion')}" th:errors="*{fechaPublicacion}"
+              class="help-block" id="edad-error">Errores</span>
+    </div>
+    <div class="form-select">
+        <select th:field="*{estiloCanciones}">
+            <option value="" selected>seleccione tipo de Estilo</option>
+            <option th:each="cancion: ${T(com.example.examenvictoralarconlezaun.entidades.EstiloCanciones).values()}"
+                    th:value="${cancion}" th:text="${cancion}"></option>
+        </select>
+        <span th:if="${#fields.hasErrors('estiloCanciones')}" th:errors="*{estiloCanciones}"
+              class="help-block" id="tipo-error">Errores</span>
+    </div>
+    <div class="input-group mb-3">
+        <label for="fechaIngreso">Datos adicionales</label>
+        <input class="form-control" type="text" id="fechaIngreso" th:field="*{datosAdicionales}">
+    </div>
+
+
+
+    <button class="btn btn-primary" type="submit">enviar</button>
+</form>
+
+
+</body>
+</html>
+
+</body>
+</html>

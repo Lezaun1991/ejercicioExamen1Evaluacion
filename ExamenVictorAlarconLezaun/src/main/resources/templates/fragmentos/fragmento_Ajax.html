@@ -1,0 +1,17 @@
+<!--  Modal para el borrado -->
+<div class="modal fade" id="delete-modal" tabindex="-1" th:fragment="Ajax-Leer">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Datos Adicionales</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+                <p th:text="${delete_message}">¿Confirma el borrado de esta mascota?</p>
+            </div>
+            <div class="modal-footer">
+                <a href="#" th:href="@{/song/list}" class="btn btn-primary">Volver a La lista</a>
+            </div>
+        </div>
+    </div>
+</div>
